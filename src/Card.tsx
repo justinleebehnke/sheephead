@@ -10,7 +10,7 @@ class Card extends Component<Props, {}> {
   render() {
     const { card } = this.props;
     return (
-      <div>
+      <div className="playing-card">
         {
           //@ts-ignore
           <img src={cards[card]} alt={`playing-card-${card}`} />
