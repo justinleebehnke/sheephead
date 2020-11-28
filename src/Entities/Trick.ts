@@ -4,7 +4,6 @@ import Player from "./Player";
 class Trick {
   private cardsInTrick: Card[];
   private highestRankedCardValue: number;
-  private trickOwner: Player;
 
   constructor() {
     this.cardsInTrick = [];
