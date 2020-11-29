@@ -1,8 +1,8 @@
 enum Suit {
-  TRUMP,
+  CLUB,
+  DIAMOND,
   HEART,
-  SPADE,
-  CLUB
+  SPADE
 }
 
 export default Suit
