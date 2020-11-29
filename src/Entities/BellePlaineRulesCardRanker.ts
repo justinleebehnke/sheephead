@@ -1,5 +1,5 @@
-import ICardRanker from './Entities/ICardRanker'
-import Suit from './Entities/Suit'
+import ICardRanker from './ICardRanker'
+import Suit from './Suit'
 
 interface CardConfig {
   rank: number
@@ -22,19 +22,15 @@ cardIdToCardConfig.set('td', { rank: 11, pointValue: 10, suit: Suit.TRUMP })
 cardIdToCardConfig.set('kd', { rank: 12, pointValue: 4, suit: Suit.TRUMP })
 cardIdToCardConfig.set('9d', { rank: 13, pointValue: 0, suit: Suit.TRUMP })
 cardIdToCardConfig.set('8d', { rank: 14, pointValue: 0, suit: Suit.TRUMP })
-
 cardIdToCardConfig.set('ac', { rank: 15, pointValue: 11, suit: Suit.CLUB })
 cardIdToCardConfig.set('as', { rank: 16, pointValue: 11, suit: Suit.SPADE })
 cardIdToCardConfig.set('ah', { rank: 17, pointValue: 11, suit: Suit.HEART })
-
 cardIdToCardConfig.set('tc', { rank: 18, pointValue: 10, suit: Suit.CLUB })
 cardIdToCardConfig.set('ts', { rank: 19, pointValue: 10, suit: Suit.SPADE })
 cardIdToCardConfig.set('th', { rank: 20, pointValue: 10, suit: Suit.HEART })
-
 cardIdToCardConfig.set('kc', { rank: 21, pointValue: 4, suit: Suit.CLUB })
 cardIdToCardConfig.set('ks', { rank: 22, pointValue: 4, suit: Suit.SPADE })
 cardIdToCardConfig.set('kh', { rank: 23, pointValue: 4, suit: Suit.HEART })
-
 cardIdToCardConfig.set('9c', { rank: 24, pointValue: 0, suit: Suit.CLUB })
 cardIdToCardConfig.set('9s', { rank: 25, pointValue: 0, suit: Suit.SPADE })
 cardIdToCardConfig.set('9h', { rank: 26, pointValue: 0, suit: Suit.HEART })

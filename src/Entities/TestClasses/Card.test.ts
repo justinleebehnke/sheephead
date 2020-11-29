@@ -1,4 +1,4 @@
-import BellePlaineRulesCardRanker from '~BellePlaineRulesCardRanker'
+import BellePlaineRulesCardRanker from '~Entities/BellePlaineRulesCardRanker'
 import Card from '../Card'
 import Suit from '../Suit'
 
