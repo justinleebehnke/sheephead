@@ -1,3 +1,4 @@
+import BellePlaineRulesCardRanker from '~BellePlaineRulesCardRanker'
 import Card from '../Card'
 import Hand from '../Hand'
 
@@ -8,7 +9,7 @@ describe('Hand', () => {
     it('Should return all cards in the hand if there there is no matching suit in the hand to follow', () => {})
     it('Should return all cards in the hand if there there is no lead card passed in', () => {
       const hand = new Hand()
-      hand.addCard(new Card('qc'))
+      hand.addCard(new Card('qc', new BellePlaineRulesCardRanker()))
     })
   })
 })
