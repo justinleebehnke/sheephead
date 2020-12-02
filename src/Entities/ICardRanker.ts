@@ -3,8 +3,9 @@ import Suit from './Suit'
 interface ICardRanker {
   isTrump(cardId: string): boolean
   isValidCard(cardId: string): boolean
-  getRank(cardId: string): number
+  getAllCardIds(): string[]
   getPointValue(cardId: string): number
+  getRank(cardId: string): number
   getSuit(cardId: string): Suit
 }
 
