@@ -34,7 +34,7 @@ class TrickState implements IRoundState {
             this.round.getIndexOfNextPlayer(this.round.getIndexOfCurrentTurn())
           )
         )
-        this.round.setCurrentTrick(new Trick())
+        this.round.setCurrentTrick(new Trick(this.round.getCurrentTrick().getTrickOrder() + 1))
         this.round.setContext(new TrickState(this.round))
       } else {
         this.round.setCurrentTrick = null

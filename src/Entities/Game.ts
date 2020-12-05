@@ -1,5 +1,6 @@
 import Player from './Player'
 import Trick from './Trick'
+import UniqueIdentifier from '../Utilities/UniqueIdentifier'
 
 class Game {
   private players: Player[]
@@ -17,7 +18,7 @@ class Game {
   // then the game ends and all the points and progress get discarded
 
   public addPlayer(name: string) {
-    this.players.push(new Player(name))
+    this.players.push(new Player(name, new UniqueIdentifier()))
     if (this.players.length === 4) {
       this.startGame()
     }

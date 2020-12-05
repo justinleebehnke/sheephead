@@ -54,9 +54,13 @@ class EndOfRoundState implements IRoundState {
   private getAllTrickData(): TrickData[] {
     const allTricks: Trick[] = []
     this.round.getPlayers().forEach(player => {
-      allTricks.concat(player.getTricksWon())
+      player.getTricksWon().forEach(trick => {
+        allTricks.push(trick)
+      })
     })
-    return allTricks.map(trick => trick.getTrickData())
+    return allTricks
+      .sort((trickA, trickB) => trickA.getTrickOrder() - trickB.getTrickOrder())
+      .map(trick => trick.getTrickData())
   }
 }
 

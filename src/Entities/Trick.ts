@@ -6,8 +6,10 @@ import Player from './Player'
 class Trick {
   private cardsInTrick: Card[]
   private playerOfCard: Player[]
+  private trickOrder: number
 
-  constructor() {
+  constructor(trickOrder: number) {
+    this.trickOrder = trickOrder
     this.cardsInTrick = []
     this.playerOfCard = []
   }
@@ -26,6 +28,10 @@ class Trick {
       (total: number, current: Card) => total + current.getPointValue(),
       0
     )
+  }
+
+  public getTrickOrder(): number {
+    return this.trickOrder
   }
 
   public getTrickData(): TrickData {
