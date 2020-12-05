@@ -1,16 +1,27 @@
 import Card from './Card'
 import Hand from './Hand'
 import Trick from './Trick'
+import UniqueIdentifier from '../Utilities/UniqueIdentifier'
 
 class Player {
   private name: string
   private hand: Hand
   private tricksWon: Trick[]
+  private uniqueIdentifier: UniqueIdentifier
 
-  constructor(name: string) {
+  constructor(name: string, id: UniqueIdentifier) {
     this.name = name
     this.hand = new Hand()
     this.tricksWon = []
+    this.uniqueIdentifier = id
+  }
+
+  public getName(): string {
+    return this.name
+  }
+
+  public getId(): string {
+    return this.uniqueIdentifier.getId()
   }
 
   public giveCard(card: Card) {
@@ -19,6 +30,14 @@ class Player {
 
   public giveTrick(trick: Trick) {
     this.tricksWon.push(trick)
+  }
+
+  public getTricksWon(): Trick[] {
+    return this.tricksWon
+  }
+
+  public hasCardsInHand(): boolean {
+    return this.hand.getPlayableCardIds().length > 0
   }
 
   public clearCards(): void {

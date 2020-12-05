@@ -4,6 +4,7 @@ import IRoundState from './IRoundState'
 import FindingPickerState from './FindingPickerState'
 import Player from '../Player'
 import ICardRanker from '../ICardRanker'
+import Trick from '../Trick'
 
 class Round {
   private players: Player[]
@@ -14,6 +15,7 @@ class Round {
   private context: IRoundState
   private bury: Card[]
   private cardRanker: ICardRanker
+  private currentTrick: Trick
 
   constructor(
     players: Player[],
@@ -29,6 +31,14 @@ class Round {
     this.deal()
   }
 
+  public getCurrentTrick(): Trick {
+    return this.currentTrick
+  }
+
+  public setCurrentTrick(trick: Trick): void {
+    this.currentTrick = trick
+  }
+
   public getIndexOfDealer(): number {
     return this.indexOfDealer
   }
@@ -37,8 +47,24 @@ class Round {
     return this.indexOfCurrentTurn
   }
 
+  public getPlayers(): Player[] {
+    return this.players
+  }
+
+  public getNumPlayers(): number {
+    return this.players.length
+  }
+
+  public getCurrentTurnPlayer(): Player {
+    return this.players[this.getIndexOfCurrentTurn()]
+  }
+
   public setBury(bury: Card[]): void {
     this.bury = bury
+  }
+
+  public getBury(): Card[] {
+    return this.bury
   }
 
   public setContext(state: IRoundState): void {
