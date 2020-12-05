@@ -2,8 +2,8 @@ import BuryData from '../DataStructures/BuryData'
 import TrickData from '../DataStructures/TrickData'
 
 interface EndOfRoundData {
-  tricks: TrickData[]
   bury: BuryData
+  tricks: TrickData[]
 }
 
 export default EndOfRoundData

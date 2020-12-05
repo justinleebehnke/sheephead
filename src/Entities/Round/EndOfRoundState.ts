@@ -13,25 +13,25 @@ class EndOfRoundState implements IRoundState {
     this.round = round
   }
 
-  pass(): void {
+  public pass(): void {
     throw new Error('Cannot pass in EndOfRoundState.')
   }
 
-  pick(): void {
+  public pick(): void {
     throw new Error('Cannot pick in EndOfRoundState.')
   }
 
-  bury(cardA: Card, cardB: Card): void {
+  public bury(cardA: Card, cardB: Card): void {
     throw new Error(
       `Cannot bury "${cardA.getCardId()}" & "${cardB.getCardId()}" in EndOfRoundState.`
     )
   }
 
-  play(card: Card): void {
+  public play(card: Card): void {
     throw new Error(`Cannot play "${card.getCardId()}" in EndOfRoundState.`)
   }
 
-  getEndOfRoundReport(): EndOfRoundData {
+  public getEndOfRoundReport(): EndOfRoundData {
     return {
       bury: this.getBuryData(),
       tricks: this.getAllTrickData()

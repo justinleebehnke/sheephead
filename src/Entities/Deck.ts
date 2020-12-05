@@ -3,14 +3,14 @@ import Card from './Card'
 import ICardRanker from './ICardRanker'
 
 class Deck {
-  private stackOfCards: Card[]
   private cardIds: string[]
   private cardRanker: ICardRanker
+  private stackOfCards: Card[]
 
   constructor(cardRanker: ICardRanker) {
+    this.cardIds = []
     this.cardRanker = cardRanker
     this.stackOfCards = []
-    this.cardIds = []
   }
 
   public shuffle(shuffleSeed: number): void {

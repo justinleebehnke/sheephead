@@ -11,15 +11,15 @@ class PickerHasNotBuriedState implements IRoundState {
     this.round = round
   }
 
-  pass(): void {
+  public pass(): void {
     throw new Error('Cannot pass in PickerHasNotBuriedState')
   }
 
-  pick(): void {
+  public pick(): void {
     throw new Error('Cannot pick in PickerHasNotBuriedState')
   }
 
-  bury(cardA: Card, cardB: Card): void {
+  public bury(cardA: Card, cardB: Card): void {
     this.round.setBury([cardA, cardB])
     this.round.setCurrentTrick(new Trick(1))
     this.round.setIndexOfCurrentTurn(this.round.getIndexOfNextPlayer(this.round.getIndexOfDealer()))
