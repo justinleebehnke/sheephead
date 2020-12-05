@@ -89,5 +89,26 @@ describe('Round', () => {
     expect(player4.getTricksWon().length).toBe(1)
 
     expect(round.getCurrentTrick().getNumCardsPlayed()).toBe(0)
+    expect(round.getCurrentTurnPlayer()).toBe(player3)
+    expect(player3.getPlayableCardIds()).toEqual(['qs', 'jc', 'js', 'jh', '9h'])
+    const round2LeadCard = player3.removeCardFromHand('qs')
+
+    round.play(round2LeadCard)
+    expect(round.getCurrentTurnPlayer()).toBe(player4)
+    expect(player4.getPlayableCardIds(round2LeadCard)).toEqual(['ac', 'as', 'ts', 'th', 'kh'])
+
+    round.play(player4.removeCardFromHand('kh'))
+    expect(round.getCurrentTurnPlayer()).toBe(player1)
+    expect(player1.getPlayableCardIds(round2LeadCard)).toEqual(['7d', 'qh', '9d'])
+
+    round.play(player1.removeCardFromHand('7d'))
+    expect(round.getCurrentTurnPlayer()).toBe(player2)
+    expect(player2.getPlayableCardIds(round2LeadCard)).toEqual(['td', 'kd'])
+    round.play(player2.removeCardFromHand('td'))
+
+    expect(player1.getTricksWon().length).toBe(1)
+    expect(player2.getTricksWon().length).toBe(0)
+    expect(player3.getTricksWon().length).toBe(0)
+    expect(player4.getTricksWon().length).toBe(1)
   })
 })
