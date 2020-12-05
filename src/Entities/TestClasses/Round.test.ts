@@ -5,27 +5,38 @@ import Round from '../Round/Round'
 import UniqueIdentifier from '../../Utilities/UniqueIdentifier'
 
 describe('Round', () => {
-  it('Should be able to play a round all the way through', () => {
-    const cardRanker = new BellePlaineRulesCardRanker()
-    const player1Id = '4d2f43c3-224d-46ba-bb76-0e383d9ceb5c'
-    const player1 = new Player('Jesse', new UniqueIdentifier(player1Id))
+  let cardRanker
+  let player1Id
+  let player1
+  let player2Id
+  let player2
+  let player3Id
+  let player3
+  let player4Id
+  let player4
+  let round
+  beforeEach(() => {
+    cardRanker = new BellePlaineRulesCardRanker()
+    player1Id = '4d2f43c3-224d-46ba-bb76-0e383d9ceb5c'
+    player1 = new Player('Jesse', new UniqueIdentifier(player1Id))
 
-    const player2Id = '32b62508-4e72-4028-8794-fd075b0393b5'
-    const player2 = new Player('John', new UniqueIdentifier(player2Id))
+    player2Id = '32b62508-4e72-4028-8794-fd075b0393b5'
+    player2 = new Player('John', new UniqueIdentifier(player2Id))
 
-    const player3Id = '79dbc191-2b0e-4dc3-83d7-7696c4abcb61'
-    const player3 = new Player('Jake', new UniqueIdentifier(player3Id))
+    player3Id = '79dbc191-2b0e-4dc3-83d7-7696c4abcb61'
+    player3 = new Player('Jake', new UniqueIdentifier(player3Id))
 
-    const player4Id = '81756fd4-3f61-4833-b012-43fbc407b688'
-    const player4 = new Player('Carly', new UniqueIdentifier(player4Id))
+    player4Id = '81756fd4-3f61-4833-b012-43fbc407b688'
+    player4 = new Player('Carly', new UniqueIdentifier(player4Id))
 
-    const round = new Round(
+    round = new Round(
       [player1, player2, player3, player4],
       0,
       123456789,
       new BellePlaineRulesCardRanker()
     )
-
+  })
+  it('Should be able to play a round all the way through', () => {
     expect(player1.getPlayableCardIds()).toEqual(['7d', 'qh', '9d', '8d', 'kc', '9s'])
     expect(player2.getPlayableCardIds()).toEqual(['qd', 'td', 'kd', 'ah', 'tc', '9c'])
     expect(player3.getPlayableCardIds()).toEqual(['qs', 'jc', 'js', 'jd', 'ad', '9h'])
@@ -363,5 +374,20 @@ describe('Round', () => {
     expect(actualEndOfRoundReport.tricks[5].cards[1]).toEqual(player4CardData[5])
     expect(actualEndOfRoundReport.tricks[5].cards[2]).toEqual(player1CardData[5])
     expect(actualEndOfRoundReport.tricks[5].cards[3]).toEqual(player2CardData[5])
+  })
+
+  it('Should shuffle and re deal if no one picks', () => {
+    expect(player1.getPlayableCardIds()).toEqual(['7d', 'qh', '9d', '8d', 'kc', '9s'])
+    expect(player2.getPlayableCardIds()).toEqual(['qd', 'td', 'kd', 'ah', 'tc', '9c'])
+    expect(player3.getPlayableCardIds()).toEqual(['qs', 'jc', 'js', 'jd', 'ad', '9h'])
+    expect(player4.getPlayableCardIds()).toEqual(['qc', 'ac', 'as', 'ts', 'th', 'kh'])
+    round.pass()
+    round.pass()
+    round.pass()
+    round.pass()
+    expect(player1.getPlayableCardIds()).toEqual(['qc', 'qd', 'js', 'ah', 'kc', '9s'])
+    expect(player2.getPlayableCardIds()).toEqual(['7d', 'qh', 'jd', 'td', 'ts', '9h'])
+    expect(player3.getPlayableCardIds()).toEqual(['qs', 'kd', '8d', 'ac', 'ks', 'kh'])
+    expect(player4.getPlayableCardIds()).toEqual(['jc', 'jh', 'ad', 'tc', 'th', '9c'])
   })
 })

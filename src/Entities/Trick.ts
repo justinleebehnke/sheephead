@@ -23,13 +23,6 @@ class Trick {
     return this.cardsInTrick.length
   }
 
-  public getTrickValue(): number {
-    return this.cardsInTrick.reduce(
-      (total: number, current: Card) => total + current.getPointValue(),
-      0
-    )
-  }
-
   public getTrickOrder(): number {
     return this.trickOrder
   }
