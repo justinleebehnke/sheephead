@@ -116,11 +116,7 @@ class Round implements IRoundState {
   }
 
   public nextTurn(): void {
-    if (this.indexOfCurrentTurn === undefined) {
-      throw Error('Cannot advance turn where there is no current turn')
-    } else {
-      this.indexOfCurrentTurn = this.getIndexOfNextPlayer(this.indexOfCurrentTurn)
-    }
+    this.indexOfCurrentTurn = this.getIndexOfNextPlayer(this.indexOfCurrentTurn)
   }
 
   public reDeal(): void {
@@ -143,9 +139,6 @@ class Round implements IRoundState {
     this.blind.push(deck.getNextCard())
     this.blind.push(deck.getNextCard())
     this.giveEachPlayerThreeCards(deck)
-    if (deck.hasNextCard()) {
-      throw Error(`Deck is not empty: ${JSON.stringify(deck)}`)
-    }
     this.indexOfCurrentTurn = this.getIndexOfNextPlayer(this.indexOfDealer)
     this.context = new FindingPickerState(this)
   }
