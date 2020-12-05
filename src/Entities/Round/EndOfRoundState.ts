@@ -17,6 +17,10 @@ class EndOfRoundState implements IRoundState {
     throw new Error('Cannot pass in EndOfRoundState.')
   }
 
+  pick(): void {
+    throw new Error('Cannot pick in EndOfRoundState.')
+  }
+
   bury(cardA: Card, cardB: Card): void {
     throw new Error(
       `Cannot bury "${cardA.getCardId()}" & "${cardB.getCardId()}" in EndOfRoundState.`

@@ -28,12 +28,20 @@ class Player {
     this.hand.addCard(card)
   }
 
+  public removeCardFromHand(cardId: string): Card {
+    return this.hand.removeCardFromHand(cardId)
+  }
+
   public giveTrick(trick: Trick) {
     this.tricksWon.push(trick)
   }
 
   public getTricksWon(): Trick[] {
     return this.tricksWon
+  }
+
+  public getPlayableCardIds(leadCard?: Card): string[] {
+    return this.hand.getPlayableCardIds(leadCard)
   }
 
   public hasCardsInHand(): boolean {

@@ -16,6 +16,10 @@ class TrickState implements IRoundState {
     throw new Error('Cannot pass in TrickState')
   }
 
+  public pick(): void {
+    throw new Error('Cannot pick in TrickState')
+  }
+
   public bury(cardA: Card, cardB: Card): void {
     throw new Error(`Cannot bury "${cardA.getCardId()}" & "${cardB.getCardId()}" in TrickState`)
   }
@@ -23,7 +27,7 @@ class TrickState implements IRoundState {
   public play(card: Card): void {
     this.round.getCurrentTrick().addCardToTrick(card, this.round.getCurrentTurnPlayer())
     if (this.isCompleteTrick()) {
-      this.round.getCurrentTrick().giveTrickToHighestRankingCardPlayer()
+      this.round.getCurrentTrick().giveToHighestRankingCardPlayer()
       if (this.thereAreMoreTricksLeftToPlay()) {
         this.round.setCurrentTrick(new Trick())
         this.round.setContext(new TrickState(this.round))
@@ -31,6 +35,10 @@ class TrickState implements IRoundState {
         this.round.setCurrentTrick = null
         this.round.setContext(new EndOfRoundState(this.round))
       }
+    } else {
+      this.round.setIndexOfCurrentTurn(
+        this.round.getIndexOfNextPlayer(this.round.getIndexOfCurrentTurn())
+      )
     }
   }
 

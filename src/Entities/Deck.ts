@@ -4,20 +4,26 @@ import ICardRanker from './ICardRanker'
 
 class Deck {
   private stackOfCards: Card[]
+  private cardIds: string[]
+  private cardRanker: ICardRanker
+
   constructor(cardRanker: ICardRanker) {
-    this.stackOfCards = cardRanker.getAllCardIds().map(cardId => new Card(cardId, cardRanker))
+    this.cardRanker = cardRanker
   }
 
   public shuffle(shuffleSeed: number): void {
+    this.cardIds = this.cardRanker.getAllCardIds()
     this.performFisherYatesShuffle(shuffleSeed)
+    this.stackOfCards = this.cardIds.map(cardId => new Card(cardId, this.cardRanker))
   }
 
   private performFisherYatesShuffle(shuffleSeed: number) {
-    for (let i = this.stackOfCards.length - 1; i > 0; i--) {
-      const j = Math.floor(seedrandom(shuffleSeed) * i)
-      const temp = this.stackOfCards[i]
-      this.stackOfCards[i] = this.stackOfCards[j]
-      this.stackOfCards[j] = temp
+    const randomGenerator = seedrandom(shuffleSeed)
+    for (let i = this.cardIds.length - 1; i > 0; i--) {
+      const j = Math.floor(randomGenerator() * i)
+      const temp = this.cardIds[i]
+      this.cardIds[i] = this.cardIds[j]
+      this.cardIds[j] = temp
     }
   }
 

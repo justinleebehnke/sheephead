@@ -1,9 +1,8 @@
 import Card from '../Card'
 import EndOfRoundData from './EndOfRoundReportData'
 import IRoundState from './IRoundState'
+import PickerHasNotBuriedState from './PickerHasNotBuriedState'
 import Round from './Round'
-import Trick from '../Trick'
-import TrickState from './TrickState'
 
 class FindingPickerState implements IRoundState {
   private round: Round
@@ -20,10 +19,19 @@ class FindingPickerState implements IRoundState {
     }
   }
 
+  public pick(): void {
+    const [blindCardA, blindCardB] = this.round.getBlind()
+    this.round.getCurrentTurnPlayer().giveCard(blindCardA)
+    this.round.getCurrentTurnPlayer().giveCard(blindCardB)
+    this.round.setBlind([])
+    this.round.setPicker(this.round.getCurrentTurnPlayer())
+    this.round.setContext(new PickerHasNotBuriedState(this.round))
+  }
+
   public bury(cardA: Card, cardB: Card): void {
-    this.round.setBury([cardA, cardB])
-    this.round.setCurrentTrick(new Trick())
-    this.round.setContext(new TrickState(this.round))
+    throw new Error(
+      `Cannot bury "${cardA.getCardId()}" & "${cardB.getCardId()}" in FindingPickerState.`
+    )
   }
 
   public play(card: Card): void {

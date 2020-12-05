@@ -9,6 +9,7 @@ class Hand {
 
   public addCard(card: Card): void {
     this.hand.push(card)
+    this.hand.sort((cardA, cardB) => cardA.getRank() - cardB.getRank())
   }
 
   public removeCardFromHand(cardId: string): Card {

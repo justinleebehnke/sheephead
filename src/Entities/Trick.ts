@@ -47,7 +47,7 @@ class Trick {
     return result
   }
 
-  public giveTrickToHighestRankingCardPlayer(): void {
+  public giveToHighestRankingCardPlayer(): void {
     this.playerOfCard[this.getIndexOfHighestRankingCardInTrick()].giveTrick(this)
   }
 
@@ -56,7 +56,7 @@ class Trick {
   }
 
   private getHighestRankInTrick(): number {
-    return Math.max(...this.getRankOfCardsInTrick())
+    return Math.min(...this.getRankOfCardsInTrick())
   }
 
   private getRankOfCardsInTrick(): number[] {
