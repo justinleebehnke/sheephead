@@ -16,10 +16,6 @@ class Player {
     this.uniqueIdentifier = id
   }
 
-  public getName(): string {
-    return this.name
-  }
-
   public getId(): string {
     return this.uniqueIdentifier.getId()
   }

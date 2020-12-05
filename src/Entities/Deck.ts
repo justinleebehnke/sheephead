@@ -9,6 +9,8 @@ class Deck {
 
   constructor(cardRanker: ICardRanker) {
     this.cardRanker = cardRanker
+    this.stackOfCards = []
+    this.cardIds = []
   }
 
   public shuffle(shuffleSeed: number): void {
