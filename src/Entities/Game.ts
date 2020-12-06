@@ -8,20 +8,31 @@ class Game {
   private currentDealer: number
   private currentRound: Round | null
 
-  constructor(players: Player[], dealerIndex: number) {
+  public constructor(players: Player[], dealerIndex: number) {
     this.players = players
     this.currentDealer = dealerIndex
     this.currentRound = null
   }
 
-  public addPlayer(name: string) {
-    this.players.push(new Player(name, new UniqueIdentifier()))
+  public addPlayer(name: string, id: UniqueIdentifier) {
+    this.players.push(new Player(name, id))
     if (this.players.length === 4) {
       this.playRound()
     }
   }
 
+  public getPlayerById(id: UniqueIdentifier): Player {
+    const playerWithMatchingId: Player | undefined = this.players.find(
+      player => player.getId() === id.getId()
+    )
+    if (playerWithMatchingId === undefined) {
+      throw Error(`Could not find a player with Id: ${id.getId()}`)
+    }
+    return playerWithMatchingId
+  }
+
   private playRound(): void {
+    this.players.forEach(player => player.clearCards())
     this.currentRound = new Round(
       this.players,
       this.currentDealer,
