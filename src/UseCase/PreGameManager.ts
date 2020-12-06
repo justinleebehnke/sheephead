@@ -4,4 +4,4 @@ class PreGameManager {
   // this guy handles everything up to the point where the game hasn't yet started
 }
 
-export default PreGameManager;
+export default PreGameManager

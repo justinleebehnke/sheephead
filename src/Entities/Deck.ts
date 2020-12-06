@@ -20,7 +20,7 @@ class Deck {
   }
 
   private performFisherYatesShuffle(shuffleSeed: number) {
-    const randomGenerator = seedrandom(shuffleSeed)
+    const randomGenerator = seedrandom(String(shuffleSeed))
     for (let i = this.cardIds.length - 1; i > 0; i--) {
       const j = Math.floor(randomGenerator() * i)
       const temp = this.cardIds[i]

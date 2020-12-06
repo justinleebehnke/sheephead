@@ -1,6 +1,6 @@
 interface DealCommandDTO {
-  player: number;
-  shuffleSeed: number;
+  player: number
+  shuffleSeed: number
 }
 
-export default DealCommandDTO;
+export default DealCommandDTO

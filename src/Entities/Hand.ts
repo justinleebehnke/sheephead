@@ -19,8 +19,10 @@ class Hand {
   public removeCardFromHand(cardId: string): Card {
     if (this.hand.some(card => card.getCardId() === cardId)) {
       const result = this.hand.find(card => card.getCardId() === cardId)
-      this.hand = this.hand.filter(card => card.getCardId() !== cardId)
-      return result
+      if (result) {
+        this.hand = this.hand.filter(card => card.getCardId() !== cardId)
+        return result
+      }
     }
     throw Error(`Card id: ${cardId} not in hand`)
   }

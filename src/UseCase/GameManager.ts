@@ -1,3 +1,3 @@
 class GameManager {}
 
-export default GameManager;
+export default GameManager

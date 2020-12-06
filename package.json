@@ -37,7 +37,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "build": "react-scripts build",
     "test": "eslint . && jest --runInBand --coverage",
     "lint": "eslint --fix .",
@@ -60,5 +60,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/seedrandom": "^2.4.28",
+    "@types/uuid": "^8.3.0"
   }
 }

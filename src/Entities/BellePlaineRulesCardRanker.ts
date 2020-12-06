@@ -41,6 +41,7 @@ cardIdToCardConfig.set('9h', { rank: 26, pointValue: 0, suit: Suit.HEART, isTrum
 
 class BellePlaineRulesCardRanker implements ICardRanker {
   public isTrump(cardId: string): boolean {
+    // @ts-ignore
     return cardIdToCardConfig.get(cardId).isTrump
   }
 
@@ -53,14 +54,17 @@ class BellePlaineRulesCardRanker implements ICardRanker {
   }
 
   public getPointValue(cardId: string): number {
+    // @ts-ignore
     return cardIdToCardConfig.get(cardId).pointValue
   }
 
   public getRank(cardId: string): number {
+    // @ts-ignore
     return cardIdToCardConfig.get(cardId).rank
   }
 
   public getSuit(cardId: string): Suit {
+    // @ts-ignore
     return cardIdToCardConfig.get(cardId).suit
   }
 }

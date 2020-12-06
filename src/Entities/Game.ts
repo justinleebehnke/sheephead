@@ -1,12 +1,8 @@
 import Player from './Player'
-import Trick from './Trick'
 import UniqueIdentifier from '../Utilities/UniqueIdentifier'
 
 class Game {
   private players: Player[]
-  private dealerIndex: number
-  private currentTurnIndex: number
-  private currentTrick: Trick
 
   constructor() {
     this.players = []

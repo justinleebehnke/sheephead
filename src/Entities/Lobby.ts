@@ -3,4 +3,4 @@ class Lobby {
   // there are a list of games and that people can join and stuff like that
 }
 
-export default Lobby;
+export default Lobby

@@ -27,11 +27,17 @@ class Round implements IRoundState {
   ) {
     this.players = players
     this.indexOfDealer = indexOfDealer
+    this.indexOfCurrentTurn = -1
     this.blind = []
+    // @ts-ignore
     this.picker = null
     this._bury = []
     this.shuffleSeed = shuffleSeed
     this.cardRanker = cardRanker
+    // @ts-ignore
+    this.context = null
+    // @ts-ignore
+    this.currentTrick = null
     this.deal()
   }
 
