@@ -1,11 +1,11 @@
 import Card from '../Card'
 import Deck from '../Deck'
-import IRoundState from './IRoundState'
-import FindingPickerState from './FindingPickerState'
-import Player from '../Player'
-import ICardRanker from '../ICardRanker'
-import Trick from '../Trick'
 import EndOfRoundData from './EndOfRoundReportData'
+import FindingPickerState from './FindingPickerState'
+import ICardRanker from '../ICardRanker'
+import IRoundState from './IRoundState'
+import Player from '../Player'
+import Trick from '../Trick'
 
 class Round implements IRoundState {
   private players: Player[]
@@ -17,7 +17,7 @@ class Round implements IRoundState {
   private _bury: Card[]
   private cardRanker: ICardRanker
   private currentTrick: Trick
-  private picker: Player
+  private pickerIndex: number
 
   constructor(
     players: Player[],
@@ -27,17 +27,14 @@ class Round implements IRoundState {
   ) {
     this.players = players
     this.indexOfDealer = indexOfDealer
-    this.indexOfCurrentTurn = -1
+    this.indexOfCurrentTurn = this.getIndexOfNextPlayer(this.indexOfDealer)
     this.blind = []
-    // @ts-ignore
-    this.picker = null
+    this.pickerIndex = -1
     this._bury = []
     this.shuffleSeed = shuffleSeed
     this.cardRanker = cardRanker
-    // @ts-ignore
-    this.context = null
-    // @ts-ignore
-    this.currentTrick = null
+    this.context = new FindingPickerState(this)
+    this.currentTrick = new Trick(-1)
     this.deal()
   }
 
@@ -77,12 +74,12 @@ class Round implements IRoundState {
     return this.indexOfCurrentTurn
   }
 
-  public getPicker(): Player {
-    return this.picker
+  public getPickerIndex(): number {
+    return this.pickerIndex
   }
 
-  public setPicker(player: Player): void {
-    this.picker = player
+  public setPickerIndex(index: number): void {
+    this.pickerIndex = index
   }
 
   public setIndexOfCurrentTurn(index: number): void {

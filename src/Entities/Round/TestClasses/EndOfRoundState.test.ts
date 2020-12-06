@@ -7,6 +7,7 @@ describe('End Of Round State', () => {
     const cardA = new Card('qc', new BellePlaineRulesCardRanker())
     const cardB = new Card('qc', new BellePlaineRulesCardRanker())
 
+    // @ts-ignore
     const endOfRoundState = new EndOfRoundState(null)
     expect(() => endOfRoundState.pass()).toThrow('Cannot pass in EndOfRoundState.')
     expect(() => endOfRoundState.pick()).toThrow('Cannot pick in EndOfRoundState.')

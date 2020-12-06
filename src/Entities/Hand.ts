@@ -19,10 +19,9 @@ class Hand {
   public removeCardFromHand(cardId: string): Card {
     if (this.hand.some(card => card.getCardId() === cardId)) {
       const result = this.hand.find(card => card.getCardId() === cardId)
-      if (result) {
-        this.hand = this.hand.filter(card => card.getCardId() !== cardId)
-        return result
-      }
+      this.hand = this.hand.filter(card => card.getCardId() !== cardId)
+      // @ts-ignore
+      return result
     }
     throw Error(`Card id: ${cardId} not in hand`)
   }

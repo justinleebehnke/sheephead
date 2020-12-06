@@ -1,20 +1,21 @@
 import Card from '../Card'
 import BellePlaineRulesCardRanker from '../BellePlaineRulesCardRanker'
+import ICardRanker from '../../Entities/ICardRanker'
 import Player from '../Player'
 import Round from '../Round/Round'
 import UniqueIdentifier from '../../Utilities/UniqueIdentifier'
 
 describe('Round', () => {
-  let cardRanker
-  let player1Id
-  let player1
-  let player2Id
-  let player2
-  let player3Id
-  let player3
-  let player4Id
-  let player4
-  let round
+  let cardRanker: ICardRanker
+  let player1Id: string
+  let player1: Player
+  let player2Id: string
+  let player2: Player
+  let player3Id: string
+  let player3: Player
+  let player4Id: string
+  let player4: Player
+  let round: Round
   beforeEach(() => {
     cardRanker = new BellePlaineRulesCardRanker()
     player1Id = '4d2f43c3-224d-46ba-bb76-0e383d9ceb5c'
@@ -52,9 +53,9 @@ describe('Round', () => {
     round.pass()
     expect(round.getCurrentTurnPlayer()).toBe(player3)
 
-    expect(round.getPicker()).toBe(null)
+    expect(round.getPickerIndex()).toBe(-1)
     round.pick()
-    expect(round.getPicker()).toBe(player3)
+    expect(round.getPickerIndex()).toBe(2)
 
     expect(round.getBlind().length).toBe(0)
     expect(player3.getPlayableCardIds()).toEqual(['qs', 'jc', 'js', 'jh', 'jd', 'ad', 'ks', '9h'])
@@ -79,16 +80,17 @@ describe('Round', () => {
     const round1LeadCard = player2.removeCardFromHand('qd')
     expect(player2.getPlayableCardIds()).toEqual(['td', 'kd', 'ah', 'tc', '9c'])
     round.play(round1LeadCard)
+    // @ts-ignore
     expect(round.getCurrentTrick().getNumCardsPlayed()).toBe(1)
     expect(round.getCurrentTurnPlayer()).toBe(player3)
     expect(player3.getPlayableCardIds(round1LeadCard)).toEqual(['qs', 'jc', 'js', 'jh', 'jd'])
     round.play(player3.removeCardFromHand('jd'))
-
+    // @ts-ignore
     expect(round.getCurrentTrick().getNumCardsPlayed()).toBe(2)
     expect(round.getCurrentTurnPlayer()).toBe(player4)
     expect(player4.getPlayableCardIds(round1LeadCard)).toEqual(['qc'])
     round.play(player4.removeCardFromHand('qc'))
-
+    // @ts-ignore
     expect(round.getCurrentTrick().getNumCardsPlayed()).toBe(3)
     expect(round.getCurrentTurnPlayer()).toBe(player1)
     expect(player1.getPlayableCardIds(round1LeadCard)).toEqual(['7d', 'qh', '9d', '8d'])
@@ -98,7 +100,7 @@ describe('Round', () => {
     expect(player2.getTricksWon().length).toBe(0)
     expect(player3.getTricksWon().length).toBe(0)
     expect(player4.getTricksWon().length).toBe(1)
-
+    // @ts-ignore
     expect(round.getCurrentTrick().getNumCardsPlayed()).toBe(0)
     expect(round.getCurrentTurnPlayer()).toBe(player3)
     expect(player3.getPlayableCardIds()).toEqual(['qs', 'jc', 'js', 'jh', '9h'])

@@ -24,7 +24,7 @@ class FindingPickerState implements IRoundState {
     this.round.getCurrentTurnPlayer().giveCard(blindCardA)
     this.round.getCurrentTurnPlayer().giveCard(blindCardB)
     this.round.setBlind([])
-    this.round.setPicker(this.round.getCurrentTurnPlayer())
+    this.round.setPickerIndex(this.round.getIndexOfCurrentTurn())
     this.round.setContext(new PickerHasNotBuriedState(this.round))
   }
 

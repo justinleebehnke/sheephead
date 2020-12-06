@@ -7,6 +7,7 @@ describe('End Of Round State', () => {
     const cardA = new Card('qc', new BellePlaineRulesCardRanker())
     const cardB = new Card('qc', new BellePlaineRulesCardRanker())
 
+    // @ts-ignore
     const findingPickerState = new FindingPickerState(null)
     expect(() => findingPickerState.bury(cardA, cardB)).toThrow(
       `Cannot bury "${cardA.getCardId()}" & "${cardB.getCardId()}" in FindingPickerState`

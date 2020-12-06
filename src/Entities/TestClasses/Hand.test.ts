@@ -1,12 +1,13 @@
+import ICardRanker from 'Entities/ICardRanker'
 import BellePlaineRulesCardRanker from '../BellePlaineRulesCardRanker'
 import Card from '../Card'
 import Hand from '../Hand'
 
 describe('Hand', () => {
+  let hand: Hand
+  let cardRanker: ICardRanker
+  let cardIdsInHand: string[]
   describe('remove card from hand', () => {
-    let hand
-    let cardRanker
-    let cardIdsInHand
     beforeEach(() => {
       hand = new Hand()
       cardRanker = new BellePlaineRulesCardRanker()
@@ -26,9 +27,6 @@ describe('Hand', () => {
   })
 
   describe('Get Playable Cards From Hand', () => {
-    let hand
-    let cardRanker
-    let cardIdsInHand
     beforeEach(() => {
       hand = new Hand()
       cardRanker = new BellePlaineRulesCardRanker()
