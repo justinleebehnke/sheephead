@@ -9,16 +9,20 @@ class Hand {
 
   public addCard(card: Card): void {
     this.hand.push(card)
+    this.hand.sort(this.sortByRankAscending)
+  }
+
+  private sortByRankAscending(cardA: Card, cardB: Card): number {
+    return cardA.getRank() - cardB.getRank()
   }
 
   public removeCardFromHand(cardId: string): Card {
-    if (this.hand.some((card) => card.getCardId() === cardId)) {
-      const result = this.hand.find((card) => card.getCardId() === cardId)
-      this.hand = this.hand.filter((card) => card.getCardId() !== cardId)
+    if (this.hand.some(card => card.getCardId() === cardId)) {
+      const result = this.hand.find(card => card.getCardId() === cardId)
+      this.hand = this.hand.filter(card => card.getCardId() !== cardId)
       return result
-    } else {
-      throw Error(`Card id: ${cardId} not in hand`)
     }
+    throw Error(`Card id: ${cardId} not in hand`)
   }
 
   public getPlayableCardIds(leadCard?: Card): string[] {
@@ -35,25 +39,28 @@ class Hand {
   }
 
   private mustPlayTrump(leadCard: Card): boolean {
-    return leadCard.isTrump() && this.hand.some((card) => card.isTrump())
+    return leadCard.isTrump() && this.hand.some(card => card.isTrump())
   }
 
   private getTrumpIds(): string[] {
-    return this.hand.filter((card) => card.isTrump()).map((card) => card.getCardId())
+    return this.hand.filter(card => card.isTrump()).map(card => card.getCardId())
   }
 
   private mustPlayMatchingSuit(leadCard: Card): boolean {
-    return this.hand.some((card) => !card.isTrump() && card.getSuit() === leadCard.getSuit())
+    return (
+      !leadCard.isTrump() &&
+      this.hand.some(card => !card.isTrump() && card.getSuit() === leadCard.getSuit())
+    )
   }
 
   private getNonTrumpMatchingSuitIds(leadCard: Card): string[] {
     return this.hand
-      .filter((card) => !card.isTrump() && card.getSuit() === leadCard.getSuit())
-      .map((card) => card.getCardId())
+      .filter(card => !card.isTrump() && card.getSuit() === leadCard.getSuit())
+      .map(card => card.getCardId())
   }
 
   private getAllCardIds(): string[] {
-    return this.hand.map((card) => card.getCardId())
+    return this.hand.map(card => card.getCardId())
   }
 }
 

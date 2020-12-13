@@ -127,4 +127,7 @@ describe('Belle Plaine Rules', () => {
     expect(new BellePlaineRulesCardRanker().isTrump('kh')).toBe(false)
     expect(new BellePlaineRulesCardRanker().isTrump('9h')).toBe(false)
   })
+  it('Should return all cardIds correctly', () => {
+    expect(new BellePlaineRulesCardRanker().getAllCardIds().length).toBe(26)
+  })
 })

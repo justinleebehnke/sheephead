@@ -48,6 +48,10 @@ class BellePlaineRulesCardRanker implements ICardRanker {
     return cardIdToCardConfig.has(cardId)
   }
 
+  public getAllCardIds(): string[] {
+    return Array.from(cardIdToCardConfig.keys())
+  }
+
   public getPointValue(cardId: string): number {
     return cardIdToCardConfig.get(cardId).pointValue
   }
